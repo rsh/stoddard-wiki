@@ -42,25 +42,20 @@ if [ ! -f "$LOCAL_SETTINGS" ]; then
 
     # Check which mode (dev or prod)
     if [ "$1" = "prod" ]; then
-        echo -e "${BLUE}Starting in PRODUCTION mode (setup)...${NC}"
-        docker compose -f docker-compose.yml -f docker-compose.init.yml -f docker-compose.prod.yml up -d
+        echo -e "${RED}Error: Cannot start in production mode without LocalSettings.php${NC}"
         echo ""
-        echo -e "${GREEN}✓ Containers started${NC}"
+        echo "Production requires a configured LocalSettings.php file."
+        echo "Please complete setup in development mode first:"
         echo ""
-        echo "Next steps:"
-        echo "1. Open your browser to: ${YELLOW}https://${PROD_DOMAIN}${NC}"
-        echo "2. Complete the MediaWiki installation wizard"
-        echo "   Database host: ${YELLOW}${CONTAINER_DB_NAME}${NC}"
-        echo "   Database name: ${YELLOW}${DB_NAME}${NC}"
-        echo "   Database user: ${YELLOW}${DB_USER}${NC}"
-        echo "   Database password: ${YELLOW}${DB_PASSWORD}${NC}"
-        echo "3. Download the generated LocalSettings.php"
-        echo "4. Save it to: ${YELLOW}${LOCAL_SETTINGS}${NC}"
-        echo "5. Configure the server URL: ${YELLOW}./configure-localsettings.sh prod${NC}"
-        echo "6. Run: ${YELLOW}./start.sh prod${NC} again to restart in normal mode"
+        echo "  1. Run: ${YELLOW}./start.sh${NC} (without 'prod' argument)"
+        echo "  2. Complete the MediaWiki installation wizard"
+        echo "  3. Download and configure LocalSettings.php"
+        echo "  4. Then run: ${YELLOW}./start.sh prod${NC}"
+        echo ""
+        exit 1
     else
         echo -e "${BLUE}Starting in DEVELOPMENT mode (setup)...${NC}"
-        docker compose -f docker-compose.yml -f docker-compose.init.yml -f docker-compose.override.yml up -d
+        docker compose -f docker-compose.yml -f docker-compose.init.yml up -d
         echo ""
         echo -e "${GREEN}✓ Containers started${NC}"
         echo ""

@@ -21,6 +21,8 @@
 
 services:
   mediawiki:
+    volumes:
+      - ./instance/LocalSettings.php:/var/www/html/LocalSettings.php
     networks:
       - internal_network
       - caddy_network

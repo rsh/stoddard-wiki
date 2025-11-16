@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./instance/images:/var/www/html/images
-      - ./instance/LocalSettings.php:/var/www/html/LocalSettings.php
+      # Note: LocalSettings.php mount is added by override files (not during init)
     networks:
       - internal_network
     depends_on:

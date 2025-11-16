@@ -10,3 +10,5 @@ services:
   mediawiki:
     ports:
       - "${DEV_PORT}:80"
+    volumes:
+      - ./instance/LocalSettings.php:/var/www/html/LocalSettings.php
