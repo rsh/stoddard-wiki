@@ -60,25 +60,25 @@ if [ ! -f "$LOCAL_SETTINGS" ]; then
         echo -e "${GREEN}✓ Containers started${NC}"
         echo ""
         echo "Next steps:"
-        echo "1. Open your browser to: ${YELLOW}http://localhost:${DEV_PORT}${NC}"
+        echo -e "1. Open your browser to: ${YELLOW}http://localhost:${DEV_PORT}${NC}"
         echo "2. Complete the MediaWiki installation wizard"
-        echo "   Database host: ${YELLOW}${CONTAINER_DB_NAME}${NC}"
-        echo "   Database name: ${YELLOW}${DB_NAME}${NC}"
-        echo "   Database user: ${YELLOW}${DB_USER}${NC}"
-        echo "   Database password: ${YELLOW}${DB_PASSWORD}${NC}"
+        echo -e "   Database host: ${YELLOW}${CONTAINER_DB_NAME}${NC}"
+        echo -e "   Database name: ${YELLOW}${DB_NAME}${NC}"
+        echo -e "   Database user: ${YELLOW}${DB_USER}${NC}"
+        echo -e "   Database password: ${YELLOW}${DB_PASSWORD}${NC}"
         echo "3. Download the generated LocalSettings.php"
-        echo "4. Save it to: ${YELLOW}${LOCAL_SETTINGS}${NC}"
-        echo "5. Configure the server URL: ${YELLOW}./configure-localsettings.sh${NC}"
-        echo "6. Run: ${YELLOW}./start.sh${NC} again to restart in normal mode"
+        echo -e "4. Save it to: ${YELLOW}${LOCAL_SETTINGS}${NC}"
+        echo -e "5. Configure the server URL: ${YELLOW}./configure-localsettings.sh${NC}"
+        echo -e "6. Run: ${YELLOW}./start.sh${NC} again to restart in normal mode"
     fi
 
     echo ""
     echo -e "${YELLOW}Tip: Quick copy and configure:${NC}"
-    echo "  cp ~/Downloads/LocalSettings.php ${LOCAL_SETTINGS}"
+    echo -e "  cp ~/Downloads/LocalSettings.php ${LOCAL_SETTINGS}"
     if [ "$1" = "prod" ]; then
-        echo "  ./configure-localsettings.sh prod"
+        echo -e "  ./configure-localsettings.sh prod"
     else
-        echo "  ./configure-localsettings.sh"
+        echo -e "  ./configure-localsettings.sh"
     fi
     echo ""
 
@@ -93,21 +93,21 @@ else
         echo ""
         echo -e "${GREEN}✓ Wiki is running${NC}"
         echo ""
-        echo "Access your wiki at: ${YELLOW}https://${PROD_DOMAIN}${NC}"
+        echo -e "Access your wiki at: ${YELLOW}https://${PROD_DOMAIN}${NC}"
     else
         echo -e "${BLUE}Starting in DEVELOPMENT mode...${NC}"
         docker compose up -d
         echo ""
         echo -e "${GREEN}✓ Wiki is running${NC}"
         echo ""
-        echo "Access your wiki at: ${YELLOW}http://localhost:${DEV_PORT}${NC}"
+        echo -e "Access your wiki at: ${YELLOW}http://localhost:${DEV_PORT}${NC}"
     fi
 
     echo ""
     echo "Useful commands:"
-    echo "  ${YELLOW}docker compose logs -f${NC}          - View logs"
-    echo "  ${YELLOW}docker compose down${NC}             - Stop containers"
-    echo "  ${YELLOW}./backup-mediawiki.sh${NC}           - Create backup"
+    echo -e "  ${YELLOW}docker compose logs -f${NC}          - View logs"
+    echo -e "  ${YELLOW}docker compose down${NC}             - Stop containers"
+    echo -e "  ${YELLOW}./backup-mediawiki.sh${NC}           - Create backup"
 fi
 
 echo ""

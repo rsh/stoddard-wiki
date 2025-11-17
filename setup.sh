@@ -60,7 +60,7 @@ if [ -f "$ENV_FILE" ]; then
     echo "Production Domain: ${PROD_DOMAIN}"
     echo ""
     echo "Setup complete! Your wiki is ready to launch."
-    echo "Run: ${GREEN}./start.sh${NC} to start your wiki"
+    echo -e "Run: ${GREEN}./start.sh${NC} to start your wiki"
     echo ""
     exit 0
 fi
@@ -90,9 +90,9 @@ WIKI_NAME=$(sanitize_name "$WIKI_DISPLAY_NAME")
 DB_NAME=$(create_db_name "$WIKI_NAME")
 
 echo "Generated configuration:"
-echo "  Display Name: ${YELLOW}${WIKI_DISPLAY_NAME}${NC}"
-echo "  Container Name: ${YELLOW}${WIKI_NAME}${NC}"
-echo "  Database Name: ${YELLOW}${DB_NAME}${NC}"
+echo -e "  Display Name: ${YELLOW}${WIKI_DISPLAY_NAME}${NC}"
+echo -e "  Container Name: ${YELLOW}${WIKI_NAME}${NC}"
+echo -e "  Database Name: ${YELLOW}${DB_NAME}${NC}"
 echo ""
 
 # Prompt for optional settings
@@ -119,20 +119,20 @@ cp "$ENV_EXAMPLE" "$ENV_FILE"
 # Use appropriate sed syntax for macOS vs Linux
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    sed -i '' "s/WIKI_NAME=.*/WIKI_NAME=${WIKI_NAME}/" "$ENV_FILE"
-    sed -i '' "s/WIKI_DISPLAY_NAME=.*/WIKI_DISPLAY_NAME=\"${WIKI_DISPLAY_NAME}\"/" "$ENV_FILE"
-    sed -i '' "s/DB_NAME=.*/DB_NAME=${DB_NAME}/" "$ENV_FILE"
-    sed -i '' "s/DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" "$ENV_FILE"
-    sed -i '' "s/DEV_PORT=.*/DEV_PORT=${DEV_PORT}/" "$ENV_FILE"
-    sed -i '' "s/PROD_DOMAIN=.*/PROD_DOMAIN=${PROD_DOMAIN}/" "$ENV_FILE"
+    sed -i '' "s/^WIKI_NAME=.*/WIKI_NAME=${WIKI_NAME}/" "$ENV_FILE"
+    sed -i '' "s/^WIKI_DISPLAY_NAME=.*/WIKI_DISPLAY_NAME=\"${WIKI_DISPLAY_NAME}\"/" "$ENV_FILE"
+    sed -i '' "s/^DB_NAME=.*/DB_NAME=${DB_NAME}/" "$ENV_FILE"
+    sed -i '' "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" "$ENV_FILE"
+    sed -i '' "s/^DEV_PORT=.*/DEV_PORT=${DEV_PORT}/" "$ENV_FILE"
+    sed -i '' "s/^PROD_DOMAIN=.*/PROD_DOMAIN=${PROD_DOMAIN}/" "$ENV_FILE"
 else
     # Linux
-    sed -i "s/WIKI_NAME=.*/WIKI_NAME=${WIKI_NAME}/" "$ENV_FILE"
-    sed -i "s/WIKI_DISPLAY_NAME=.*/WIKI_DISPLAY_NAME=\"${WIKI_DISPLAY_NAME}\"/" "$ENV_FILE"
-    sed -i "s/DB_NAME=.*/DB_NAME=${DB_NAME}/" "$ENV_FILE"
-    sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" "$ENV_FILE"
-    sed -i "s/DEV_PORT=.*/DEV_PORT=${DEV_PORT}/" "$ENV_FILE"
-    sed -i "s/PROD_DOMAIN=.*/PROD_DOMAIN=${PROD_DOMAIN}/" "$ENV_FILE"
+    sed -i "s/^WIKI_NAME=.*/WIKI_NAME=${WIKI_NAME}/" "$ENV_FILE"
+    sed -i "s/^WIKI_DISPLAY_NAME=.*/WIKI_DISPLAY_NAME=\"${WIKI_DISPLAY_NAME}\"/" "$ENV_FILE"
+    sed -i "s/^DB_NAME=.*/DB_NAME=${DB_NAME}/" "$ENV_FILE"
+    sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" "$ENV_FILE"
+    sed -i "s/^DEV_PORT=.*/DEV_PORT=${DEV_PORT}/" "$ENV_FILE"
+    sed -i "s/^PROD_DOMAIN=.*/PROD_DOMAIN=${PROD_DOMAIN}/" "$ENV_FILE"
 fi
 
 echo -e "${GREEN}✓ Created .env file with secure configuration${NC}"
@@ -150,5 +150,5 @@ echo "Dev Port: ${DEV_PORT}"
 echo "Production Domain: ${PROD_DOMAIN}"
 echo ""
 echo "Setup complete! Your wiki is ready to launch."
-echo "Run: ${GREEN}./start.sh${NC} to start your wiki"
+echo -e "Run: ${GREEN}./start.sh${NC} to start your wiki"
 echo ""
